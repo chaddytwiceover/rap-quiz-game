@@ -61,9 +61,19 @@ Future possibilities include head-to-head multiplayer, leaderboards, decade/era 
 - Explicit-content filtering should be supported in the content model.
 - Game remains usable without audio; audio features can be explored separately.
 
+## Production lyrics provider
+
+**Musixmatch** is the selected production provider because it offers a licensed lyrics catalog intended for application use.
+
+The repository now includes a server-side Musixmatch adapter at `src/server/lyrics/musixmatch.mjs` and an environment template at `.env.example`.
+
+The real `MUSIXMATCH_API_KEY` must only be stored as a server-side secret. Never expose it in browser code or commit it to GitHub.
+
+See `docs/MUSIXMATCH_SETUP.md` for account, deployment, and licensing setup.
+
 ## Lyrics/content rule
 
-Production lyric content must come from a source that permits its use in the game. Do not scrape lyric websites or commit unlicensed copyrighted lyrics to this repository. Development fixtures should use original placeholder text. The architecture should support a licensed lyrics provider using track/provider IDs and follow that provider's caching and display terms.
+Production lyric content must come from a source that permits its use in the game. Do not scrape lyric websites or commit unlicensed copyrighted lyrics to this repository. Development fixtures should use original placeholder text. The architecture should support provider IDs and follow all provider caching, attribution, tracking, transformation, and display terms.
 
 ## Development approach
 
@@ -84,4 +94,4 @@ Build a small playable vertical slice using original placeholder questions that 
 - results screen
 - responsive mobile UX
 
-The technical stack should be selected for this vertical slice before implementation begins.
+The technical stack should be selected for this vertical slice before implementation begins. Musixmatch should remain behind a server endpoint rather than being called directly by the browser.
